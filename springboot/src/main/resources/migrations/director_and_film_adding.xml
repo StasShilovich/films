@@ -5,6 +5,11 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet id="Adding_directors_and_films" author="stas.shilovich@gmail.com">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="director"/>
+            </not>
+        </preConditions>
         <createTable tableName="director">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" nullable="false"/>
@@ -12,7 +17,6 @@
             <column name="first_name" type="VARCHAR(20)"/>
             <column name="last_name" type="VARCHAR(40)"/>
             <column name="birth_date" type="DATE"/>
-            <column name="deleted" type="BOOLEAN"/>
         </createTable>
         <createTable tableName="film">
             <column autoIncrement="true" name="id" type="SERIAL">
@@ -24,92 +28,78 @@
             <column name="name" type="VARCHAR(100)"/>
             <column name="release_date" type="DATE"/>
             <column name="genre" type="VARCHAR(50)"/>
-            <column name="deleted" type="BOOLEAN"/>
         </createTable>
         <insert tableName="director">
             <column name="first_name" value="Jack"/>
             <column name="last_name" value="Jackson"/>
             <column name="birth_date" value="1978-11-05"/>
-            <column name="deleted" value="false"/>
         </insert>
         <insert tableName="director">
             <column name="first_name" value="Jacki"/>
             <column name="last_name" value="Jackals"/>
             <column name="birth_date" value="1988-12-05"/>
-            <column name="deleted" value="false"/>
         </insert>
         <insert tableName="director">
             <column name="first_name" value="Aback"/>
             <column name="last_name" value="Qemu"/>
             <column name="birth_date" value="1978-01-27"/>
-            <column name="deleted" value="true"/>
         </insert>
         <insert tableName="director">
             <column name="first_name" value="Kick"/>
             <column name="last_name" value="Baden"/>
             <column name="birth_date" value="1995-07-28"/>
-            <column name="deleted" value="false"/>
         </insert>
         <insert tableName="director">
             <column name="first_name" value="Mick"/>
             <column name="last_name" value="Pierson"/>
             <column name="birth_date" value="1949-03-13"/>
-            <column name="deleted" value="false"/>
         </insert>
         <insert tableName="director">
             <column name="first_name" value="Kusch"/>
             <column name="last_name" value="Nedda"/>
             <column name="birth_date" value="1982-03-07"/>
-            <column name="deleted" value="false"/>
         </insert>
         <insert tableName="film">
             <column name="director_id" value="2"/>
             <column name="name" value="Laughing Flames"/>
             <column name="release_date" value="1969-05-17"/>
             <column name="genre" value="Drama"/>
-            <column name="deleted" value="false"/>
         </insert>
-         <insert tableName="film">
+        <insert tableName="film">
             <column name="director_id" value="1"/>
             <column name="name" value="The Bold Blade"/>
             <column name="release_date" value="1989-08-12"/>
             <column name="genre" value="Classic"/>
-            <column name="deleted" value="false"/>
         </insert>
-         <insert tableName="film">
+        <insert tableName="film">
             <column name="director_id" value="4"/>
             <column name="name" value="Voyage of Dying"/>
             <column name="release_date" value="2000-11-20"/>
             <column name="genre" value="Thriller"/>
-            <column name="deleted" value="false"/>
         </insert>
-         <insert tableName="film">
+        <insert tableName="film">
             <column name="director_id" value="6"/>
             <column name="name" value="The Future's Swords"/>
             <column name="release_date" value="2002-05-31"/>
             <column name="genre" value="Horror"/>
-            <column name="deleted" value="false"/>
         </insert>
-         <insert tableName="film">
+        <insert tableName="film">
             <column name="director_id" value="4"/>
             <column name="name" value="The Stone of the Captive"/>
             <column name="release_date" value="2013-10-13"/>
             <column name="genre" value="Animation"/>
-            <column name="deleted" value="false"/>
         </insert>
-         <insert tableName="film">
+        <insert tableName="film">
             <column name="director_id" value="2"/>
             <column name="name" value="The Winter's Storm"/>
             <column name="release_date" value="2015-01-08"/>
             <column name="genre" value="Music"/>
-            <column name="deleted" value="false"/>
         </insert>
-         <insert tableName="film">
+        <insert tableName="film">
             <column name="director_id" value="4"/>
             <column name="name" value="The Weeping of the Boy"/>
             <column name="release_date" value="1999-05-18"/>
             <column name="genre" value="Drama"/>
-            <column name="deleted" value="false"/>
         </insert>
 
     </changeSet>
